@@ -101,7 +101,7 @@ int Board::checkWinner() {
  * @return: 1 if there is an open spot, 0 if not
  */
 int Board::canPut(int r, int c) {
-    if(grid[r][c] == 0)
+    if((grid[r][c] == 0) && (r < 3) && (c < 3))
         return 1;
     return 0;
 }

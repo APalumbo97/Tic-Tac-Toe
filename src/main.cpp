@@ -23,13 +23,12 @@ int main() {
     cout << b.toString() << endl;
 
     // Loops until there are no more possible moves.
-    while(moveCount < 9) {
+    while (moveCount < 9) {
         // Prompts for coordinates to make a move.
         do {
-            if(moveCount % 2 == 0) {
+            if (moveCount % 2 == 0) {
                 cout << "Player X's turn, enter the row and column of your move.\nRow #:";
-            }
-            else {
+            } else {
                 cout << "Player O's turn, enter the row and column of your move.\nRow #:";
             }
             cin >> r;
@@ -37,36 +36,32 @@ int main() {
             cin >> c;
 
             // Checks if the move is valid.
-            if(b.canPut((r - 1), (c - 1)) != 1) {
+            if (b.canPut((r - 1), (c - 1)) != 1) {
                 cout << "\nInvalid move, re-enter the desired coordinates.\n" << endl;
             }
-        }while(b.canPut((r - 1), (c - 1)) != 1);
+        } while (b.canPut((r - 1), (c - 1)) != 1);
         
         // Makes the move.
-        if(moveCount % 2 == 0) {
+        if (moveCount % 2 == 0) {
             b.makeMove((r - 1), (c - 1), X);
-        }
-        else {
+        } else {
             b.makeMove((r - 1), (c - 1), O);
         }
 
         cout << b.toString() << endl;
 
         // Checks if there is a winner and breaks the loop if there is.
-        if(b.checkWinner() != 0)
-            break;
+        if (b.checkWinner() != 0) break;
         moveCount++;
     }
 
     // Prints the appropriate statement base on the winning status, if any.
-    if(moveCount == 9) {
+    if (moveCount == 9) {
         cout << "\nGame over, stalemate." << endl;
-    }
-    else {
-        if(b.checkWinner() == X) {
+    } else {
+        if (b.checkWinner() == X) {
             cout << "\nPlayer X has won!!!" << endl;
-        }
-        else if(b.checkWinner() == O) {
+        } else if (b.checkWinner() == O) {
             cout << "\nPlayer O has won!!!" << endl;
         }
     }

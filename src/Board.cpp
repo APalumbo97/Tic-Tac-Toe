@@ -16,9 +16,9 @@ Board::Board() {
     grid = new int*[SIZE];
 
     // Creates all the 1D arrays to make the 2D array.
-    for(int ctr = 0; ctr < SIZE; ctr++) {
+    for (int ctr = 0; ctr < SIZE; ctr++) {
         grid[ctr] = new int[SIZE];
-        for(int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < SIZE; i++) {
             grid[ctr][i] = 0;
         }
     }
@@ -28,7 +28,7 @@ Board::Board() {
  * Destructor for a Board object.
  */
 Board::~Board() {
-    for(int ctr = 0; ctr < SIZE; ctr++) {
+    for (int ctr = 0; ctr < SIZE; ctr++) {
         delete[] grid[ctr];
     }
     delete[] grid;
@@ -42,51 +42,47 @@ int Board::checkWinner() {
     int sum;
 
     // Checks all the rows for a winner.
-    for(int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++) {
         sum = 0;
-        for(int ctr = 0; ctr < SIZE; ctr++) {
+        for (int ctr = 0; ctr < SIZE; ctr++) {
             sum += grid[i][ctr];
         }
-        if(sum == 3) {
+        if (sum == 3) {
             return X;
-        }
-        else if(sum == 15) {
+        } else if (sum == 15) {
             return O;
         }
     }
 
     // Checks all the columns for a winner.
-    for(int a = 0; a < SIZE; a++) {
+    for (int a = 0; a < SIZE; a++) {
         sum = 0;
-        for(int b = 0; b < SIZE; b++) {
+        for (int b = 0; b < SIZE; b++) {
             sum += grid[b][a];
         }
-        if(sum == 3) {
+        if (sum == 3) {
             return X;
-        }
-        else if(sum == 15) {
+        } else if (sum == 15) {
             return O;
         }
     }
 
     // Checks the top-left to bottom-right diagonal for a winner.
     sum = 0;
-    for(int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++) {
         sum += grid[i][i];
     }
-    if(sum == 3) {
+    if (sum == 3) {
         return X;
-    }
-    else if(sum == 15) {
+    } else if (sum == 15) {
         return O;
     }
 
     // Checks the top-right to bottom-left diagonal for a winner.
     sum = grid[0][2] + grid[1][1] + grid[2][0];
-    if(sum == 3) {
+    if (sum == 3) {
         return X;
-    }
-    else if(sum == 15) {
+    } else if (sum == 15) {
         return O;
     }
 
@@ -101,9 +97,8 @@ int Board::checkWinner() {
  * @return: 1 if there is an open spot, 0 if not
  */
 int Board::canPut(int r, int c) {
-    if((grid[r][c] == 0) && (r < 3) && (c < 3))
-        return 1;
-    return 0;
+    if ((grid[r][c] == 0) && (r < 3) && (c < 3)) return 1;
+    else return 0;
 }
 
 /**
@@ -125,31 +120,29 @@ string Board::toString() {
     string output = "Board:\n";
 
     // Loops through every line for the 2D array.
-    for(int ctr = 0; ctr < SIZE; ctr++) {
+    for (int ctr = 0; ctr < SIZE; ctr++) {
 
         // Loops through every value of the 1D array being checked.
-        for(int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < SIZE; i++) {
             output += ' ';
-            if(grid[ctr][i] == X) {
+            if (grid[ctr][i] == X) {
                 output += 'X';
-            }
-            else if(grid[ctr][i] == O) {
+            } else if (grid[ctr][i] == O) {
                 output += 'O';
-            }
-            else {
+            } else {
                 output += ' ';
             }
-            if(i != (SIZE - 1)) {
+
+            if (i != (SIZE - 1)) {
                 output.append(" |");
-            }   
-            else {
+            } else {
                 output += '\n';
             }
         }
 
         // Pads each line with a line of '-' characters.
-        if(ctr != (SIZE - 1)) {
-            for(int i = 0; i < (SIZE * 4) - 1; i++) {
+        if (ctr != (SIZE - 1)) {
+            for (int i = 0; i < (SIZE * 4) - 1; i++) {
                 output += '-';
             }
             output += '\n';

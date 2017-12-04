@@ -8,8 +8,10 @@ build/Board.o: src/Board.cpp
 	g++ -c src/Board.cpp -o build/Board.o
 
 clean:
-	rm -f build/*
-	rm -f bin/*
+	rm -rf build/
+	rm -rf bin/
+	mkdir -p build
+	mkdir -p bin
 
 run:
 	./bin/main
